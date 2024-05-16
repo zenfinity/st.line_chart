@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
+# import numpy as np
 
-st.header('Line chart')
+st.header('Monthly Energy Use, 2021-2023')
 
-chart_data = pd.DataFrame(
-     np.random.randn(20, 3),
-     columns=['a', 'b', 'c'])
+data = pd.read_csv("data/MonthlyUseXcelRows.csv")
 
-st.line_chart(chart_data)
+chart_data = data.filter(['date','kWh'], axis=1)
+
+st.line_chart(chart_data, x="date", y="kWh")
